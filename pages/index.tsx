@@ -1,7 +1,7 @@
-import type { FC } from 'react'
-import Image from 'next/image'
+import type { FC } from "react";
+import Image from "next/image";
 
-type ProductCardProps = { src: string; href: string; name: string }
+type ProductCardProps = { src: string; href: string; name: string };
 
 const ProductCard: FC<ProductCardProps> = ({ src, href, name }) => (
   <li className="min-w-[120px]">
@@ -12,7 +12,7 @@ const ProductCard: FC<ProductCardProps> = ({ src, href, name }) => (
       </p>
     </a>
   </li>
-)
+);
 
 export default function Home() {
   return (
@@ -31,7 +31,9 @@ export default function Home() {
           </span>
         </h1>
       </div>
-      <section className="flex flex-col w-full mx-auto py-8  max-w-[900px]">
+      {/* hiden section */}
+
+      {/* <section className="flex flex-col w-full mx-auto py-8  max-w-[900px] ">
         <ul className="inline-flex gap-8 overflow-x-scroll">
           <ProductCard
             src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/store-card-13-mac-nav-202108?wid=400&hei=260&fmt=png-alpha&.v=1625783380000"
@@ -75,7 +77,7 @@ export default function Home() {
             href="https://apple.com/shop/buy-mac"
           />
         </ul>
-      </section>
+      </section> */}
     </div>
-  )
+  );
 }
