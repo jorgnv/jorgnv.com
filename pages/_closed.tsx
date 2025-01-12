@@ -14,11 +14,11 @@ export default function Closed() {
       </svg>
 
       <h1 className="text-5xl tracking-tight max-w-3xl font-semibold mb-4 mt-10">
-        We'll be back shortly.
+        We&apos;ll be back shortly.
       </h1>
       <p className="ml-4 text-gray-500 text-xl">
-        We're currently making updates to improve the website. Please check back
-        soon!
+        We&apos;re currently making updates to improve the website. Please check
+        back soon!
       </p>
     </div>
   );
