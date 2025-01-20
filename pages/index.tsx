@@ -1,16 +1,9 @@
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import {
-  Container,
-  ISourceOptions,
-  MoveDirection,
-  OutMode,
-} from "@tsparticles/engine";
+import { Container, ISourceOptions } from "@tsparticles/engine";
 import Hero from "components/hero";
-import { CloudIcon } from "@heroicons/react/24/outline";
 import { FaCloud, FaRocket, FaDatabase, FaCode } from "react-icons/fa"; // Importa los íconos que deseas usar
 import { IconType } from "react-icons";
 
@@ -26,37 +19,6 @@ interface SkillCardProps {
   description: string; // Description is a string
   icon: string; // Icon is a string (URL or path to an image)
 }
-
-const Header = () => (
-  <header className="bg-dark py-4 px-6 flex justify-between items-center border-b border-gray-700 z-10 relative">
-    <motion.h1
-      className="text-4xl font-bold text-primary"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      Mi Portafolio
-    </motion.h1>
-    <nav>
-      <ul className="flex space-x-6">
-        {["Sobre Mí", "Habilidades", "Proyectos", "Contacto"].map((item, i) => (
-          <motion.li
-            key={i}
-            whileHover={{ scale: 1.1, color: "#03dac6" }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <Link
-              href={`#${item.toLowerCase().replace(" ", "")}`}
-              legacyBehavior
-            >
-              <a className="hover:text-secondary">{item}</a>
-            </Link>
-          </motion.li>
-        ))}
-      </ul>
-    </nav>
-  </header>
-);
 
 const Section: React.FC<SectionProps> = ({
   id,
