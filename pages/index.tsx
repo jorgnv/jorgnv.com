@@ -225,9 +225,7 @@ export default function Home() {
           close: true,
           fill: true,
           options: {},
-          type: {},
         },
-        groups: [],
         move: {
           angle: {
             offset: 0,
