@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import {
+  Container,
+  ISourceOptions,
+  MoveDirection,
+  OutMode,
+} from "@tsparticles/engine";
 
 interface SectionProps {
   id: string; // 'id' is a string
@@ -54,7 +62,7 @@ const Section: React.FC<SectionProps> = ({
 }) => (
   <section
     id={id}
-    className={`py-20 px-6 ${className}`}
+    className={`py-20 px-6 ${className} mx-auto`} // Agregué mx-auto para centrar el contenido
     style={{ scrollMarginTop: "80px" }}
   >
     <motion.h3
@@ -103,11 +111,105 @@ const Footer = () => (
 );
 
 export default function Home() {
+  const options: ISourceOptions = useMemo(
+    () => ({
+      background: {
+        color: {
+          value: "#9b59b6", // Fondo del área de partículas
+        },
+      },
+      fpsLimit: 120,
+      interactivity: {
+        events: {
+          onClick: {
+            enable: true,
+            mode: "push",
+          },
+          onHover: {
+            enable: true,
+            mode: "repulse",
+          },
+        },
+        modes: {
+          push: {
+            quantity: 4,
+          },
+          repulse: {
+            distance: 200,
+            duration: 0.4,
+          },
+        },
+      },
+      particles: {
+        color: {
+          value: "#ffffff",
+        },
+        links: {
+          color: "#ffffff",
+          distance: 150,
+          enable: true,
+          opacity: 0.5,
+          width: 1,
+        },
+        move: {
+          direction: MoveDirection.none,
+          enable: true,
+          outModes: {
+            default: OutMode.out,
+          },
+          random: false,
+          speed: 6,
+          straight: false,
+        },
+        number: {
+          density: {
+            enable: true,
+          },
+          value: 80,
+        },
+        opacity: {
+          value: 0.5,
+        },
+        shape: {
+          type: "circle",
+        },
+        size: {
+          value: { min: 1, max: 5 },
+        },
+      },
+      detectRetina: true,
+    }),
+    []
+  );
+
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  const particlesLoaded = async (container?: Container): Promise<void> => {
+    console.log(container);
+  };
+
   return (
     <div className="bg-dark text-light min-h-screen flex flex-col">
-      <Header />
+      {/* Particle Background */}
 
-      <main className="flex-grow">
+      {init && (
+        <Particles
+          id="tsparticles"
+          particlesLoaded={particlesLoaded}
+          options={options}
+          className="absolute top-0 left-0 w-full h-full z-0"
+        />
+      )}
+      <Header />
+      <main className="flex-grow z-10 relative">
         {/* Hero Section */}
         <motion.section
           className="text-center py-20 bg-gradient-to-b from-dark to-dark-gray"
@@ -176,7 +278,7 @@ export default function Home() {
 
         {/* Skills Section */}
         <Section id="skills" title="Habilidades" className="bg-dark-gray">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <SkillCard
               title="Tecnologías en la Nube"
               description="Docker, Google Cloud Platform (GCP), Firebase"
@@ -220,7 +322,6 @@ export default function Home() {
           </motion.a>
         </Section>
       </main>
-
       <Footer />
     </div>
   );

@@ -10,12 +10,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@tsparticles/engine": "^3.7.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.7.1",
     "@vercel/edge-config": "0.1.0-canary.15",
     "@vercel/speed-insights": "^1.1.0",
     "framer-motion": "^11.18.0",
     "next": "canary",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "tsparticles": "^3.7.1"
   },
   "devDependencies": {
     "@types/node": "^18.15.5",
