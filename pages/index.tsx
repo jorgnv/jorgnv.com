@@ -1,5 +1,19 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ReactNode } from "react";
+
+interface SectionProps {
+  id: string; // 'id' is a string
+  title: string; // 'title' is a string
+  children: ReactNode; // 'children' is anything React can render
+  className?: string; // 'className' is an optional string
+}
+
+interface SkillCardProps {
+  title: string; // Title is a string
+  description: string; // Description is a string
+  icon: string; // Icon is a string (URL or path to an image)
+}
 
 const Header = () => (
   <header className="bg-dark py-4 px-6 flex justify-between items-center border-b border-gray-700">
@@ -32,7 +46,12 @@ const Header = () => (
   </header>
 );
 
-const Section = ({ id, title, children, className = "" }) => (
+const Section: React.FC<SectionProps> = ({
+  id,
+  title,
+  children,
+  className = "",
+}) => (
   <section
     id={id}
     className={`py-20 px-6 ${className}`}
@@ -51,7 +70,7 @@ const Section = ({ id, title, children, className = "" }) => (
   </section>
 );
 
-const SkillCard = ({ title, description, icon }) => (
+const SkillCard: React.FC<SkillCardProps> = ({ title, description, icon }) => (
   <motion.div
     className="text-center bg-dark-gray p-6 rounded-lg shadow-lg transition duration-300 hover:scale-105"
     whileHover={{ scale: 1.05, rotate: 2 }}
