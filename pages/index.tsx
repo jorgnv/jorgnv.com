@@ -589,7 +589,7 @@ export default function Home() {
             ¿Quieres trabajar conmigo o tienes alguna pregunta? Escríbeme.
           </motion.p>
           <motion.a
-            href="mailto:tucorreo@example.com"
+            href="mailto:contacto@jorgnv.com"
             className="bg-primary text-dark px-6 py-3 rounded-lg text-lg font-bold hover:bg-secondary"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
