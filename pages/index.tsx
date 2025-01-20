@@ -9,6 +9,10 @@ import {
   MoveDirection,
   OutMode,
 } from "@tsparticles/engine";
+import Hero from "components/hero";
+import { CloudIcon } from "@heroicons/react/24/outline";
+import { FaCloud, FaRocket, FaDatabase, FaCode } from "react-icons/fa"; // Importa los íconos que deseas usar
+import { IconType } from "react-icons";
 
 interface SectionProps {
   id: string; // 'id' is a string
@@ -78,23 +82,36 @@ const Section: React.FC<SectionProps> = ({
   </section>
 );
 
-const SkillCard: React.FC<SkillCardProps> = ({ title, description, icon }) => (
-  <motion.div
-    className="text-center bg-dark-gray p-6 rounded-lg shadow-lg transition duration-300 hover:scale-105"
-    whileHover={{ scale: 1.05, rotate: 2 }}
-    whileTap={{ scale: 0.95 }}
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6 }}
-  >
-    <div className="mb-4">
-      <img src={icon} alt={title} className="w-16 h-16 mx-auto" />
-    </div>
-    <h4 className="text-xl font-bold text-primary">{title}</h4>
-    <p className="text-gray-400">{description}</p>
-  </motion.div>
-);
+const SkillCard: React.FC<SkillCardProps> = ({ title, description, icon }) => {
+  // Aquí seleccionamos el ícono basado en el nombre pasado como prop
+  const iconMap: { [key: string]: IconType } = {
+    cloud: FaCloud,
+    rocket: FaRocket,
+    database: FaDatabase,
+    code: FaCode,
+  };
+
+  const IconComponent = iconMap[icon] || FaCloud;
+
+  return (
+    <motion.div
+      className="text-center bg-dark-gray p-6 rounded-lg shadow-lg transition duration-300 hover:scale-105"
+      whileHover={{ scale: 1.05, rotate: 2 }}
+      whileTap={{ scale: 0.95 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="mb-4 flex justify-center items-center">
+        <IconComponent aria-hidden="true" size={48} />
+        {/* Usamos el ícono dinámico */}
+      </div>
+      <h4 className="text-xl font-bold text-primary">{title}</h4>
+      <p className="text-gray-400">{description}</p>
+    </motion.div>
+  );
+};
 
 const Footer = () => (
   <footer className="bg-dark py-6 text-center border-t border-gray-700">
@@ -521,24 +538,8 @@ export default function Home() {
           className="absolute top-0 left-0 w-full h-full z-0"
         />
       )}
-      <Header />
+      <Hero />
       <main className="flex-grow z-10 relative">
-        {/* Hero Section */}
-        <motion.section
-          className="text-center py-20 bg-gradient-to-b from-dark to-dark-gray"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2 }}
-        >
-          <h2 className="text-4xl font-extrabold mb-4 text-primary">
-            Hola, soy Backend Developer
-          </h2>
-          <p className="text-lg max-w-2xl mx-auto text-gray-400">
-            Especializado en construir sistemas robustos, escalables y
-            eficientes. Amo convertir ideas en código que funciona.
-          </p>
-        </motion.section>
-
         {/* About Me Section */}
         <Section id="about" title="Sobre Mí">
           <motion.div
@@ -595,17 +596,17 @@ export default function Home() {
             <SkillCard
               title="Tecnologías en la Nube"
               description="Docker, Google Cloud Platform (GCP), Firebase"
-              icon="https://tse1.mm.bing.net/th?id=OIP.AprxmYXMmpyEmWDUAdbxiwHaEU&pid=Api"
+              icon="cloud"
             />
             <SkillCard
               title="Desarrollo Back-end"
               description="TypeScript, NestJS, Node.js, MongoDB, GraphQL, PHP, Go, Python"
-              icon="https://tse3.mm.bing.net/th?id=OIP.m4waxUlEkCGcXlfiHJD3mQHaDt&pid=Api"
+              icon="rocket"
             />
             <SkillCard
               title="Desarrollo Front-end"
               description="Angular, ReactJS, Bootstrap, JavaScript, HTML, CSS"
-              icon="https://tse1.mm.bing.net/th?id=OIP.EaH10UhlBvqBEc28MN8WyAHaEK&pid=Api"
+              icon="code"
             />
           </div>
         </Section>
