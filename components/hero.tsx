@@ -3,12 +3,12 @@
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { FaGithub } from "react-icons/fa";
 
 const navigation = [
-  { name: "Sobre mí", href: "#" },
-  { name: "Proyectos", href: "#" },
-  { name: "Skills", href: "#" },
-  { name: "Contacto", href: "#" },
+  { name: "Sobre mí", href: "#sobre-mi" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contacto", href: "#contacto" },
 ];
 
 export default function Hero() {
@@ -53,8 +53,16 @@ export default function Hero() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
+            <a
+              href="#"
+              className="text-sm font-semibold text-gray-900 flex items-center space-x-2"
+            >
+              <img
+                src="/Flag_of_Venezuela.svg"
+                alt="Español"
+                className="h-5 w-5"
+              />
+              <span>Español</span>
             </a>
           </div>
         </nav>
@@ -126,13 +134,17 @@ export default function Hero() {
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              Announcing our next round of funding.{" "}
-              <a href="#" className="font-semibold text-indigo-600">
+              Descubre las últimas tendencias en desarrollo web y tecnología.{" "}
+              <a
+                href="/blog/tendencias-2025"
+                className="font-semibold text-indigo-600"
+              >
                 <span aria-hidden="true" className="absolute inset-0" />
-                Read more <span aria-hidden="true">&rarr;</span>
+                Leer más <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>
+
           <div className="text-center">
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
               Hola, soy Jorge Nava
@@ -143,13 +155,18 @@ export default function Hero() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
+                href="#sobre-mi"
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Conóceme más
               </a>
-              <a href="#" className="text-sm/6 font-semibold text-gray-900">
-                Mis proyectos <span aria-hidden="true">→</span>
+              <a
+                href="https://github.com/tu_usuario" // Reemplaza con tu enlace a GitHub
+                className="text-sm font-semibold text-gray-900 flex items-center space-x-2"
+              >
+                <FaGithub className="h-5 w-5 text-gray-900" />
+                <span>Github</span>
+                <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>
